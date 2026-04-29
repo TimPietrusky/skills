@@ -187,16 +187,12 @@ https://github.com/runpod/skills/blob/main/runpodctl/SKILL.md
 ```bash
 # Any platform (official installer)
 curl -sSL https://cli.runpod.net | bash
-
 # macOS (Homebrew)
 brew install runpod/runpodctl/runpodctl
-
 # macOS (manual — universal binary)
 mkdir -p ~/.local/bin && curl -sL https://github.com/runpod/runpodctl/releases/latest/download/runpodctl-darwin-all.tar.gz | tar xz -C ~/.local/bin
-
 # Linux
 mkdir -p ~/.local/bin && curl -sL https://github.com/runpod/runpodctl/releases/latest/download/runpodctl-linux-amd64.tar.gz | tar xz -C ~/.local/bin
-
 # Windows (PowerShell)
 Invoke-WebRequest -Uri https://github.com/runpod/runpodctl/releases/latest/download/runpodctl-windows-amd64.zip -OutFile runpodctl.zip; Expand-Archive runpodctl.zip -DestinationPath $env:LOCALAPPDATA\runpodctl; [Environment]::SetEnvironmentVariable('Path', $env:Path + ";$env:LOCALAPPDATA\runpodctl", 'User')
 ```
@@ -208,16 +204,12 @@ Ensure `~/.local/bin` is on your `PATH` (add `export PATH="$HOME/.local/bin:$PAT
 ```bash
 # First time setup (API key + SSH)
 runpodctl doctor
-
 # See available GPUs
 runpodctl gpu list
-
 # Find a template
 runpodctl template search pytorch
-
 # Create from template
 runpodctl pod create --template-id runpod-torch-v21 --gpu-id "NVIDIA GeForce RTX 4090"
-
 # List your pods
 runpodctl pod list
 ```
@@ -231,46 +223,32 @@ API key: https://runpod.io/console/user/settings
 ```bash
 # List running pods (default, like docker ps)
 runpodctl pod list
-
 # List all pods including exited
 runpodctl pod list --all
-
 # Filter by status (RUNNING, EXITED, etc.)
 runpodctl pod list --status exited
-
 # Pods created within last 24 hours
 runpodctl pod list --since 24h
-
 # Pods created after date
 runpodctl pod list --created-after 2025-01-15
-
 # Get pod details (includes SSH info)
 runpodctl pod get <pod-id>
-
 # Create from template
 runpodctl pod create --template-id runpod-torch-v21 --gpu-id "NVIDIA GeForce RTX 4090"
-
 # Create with image
 runpodctl pod create --image "runpod/pytorch:1.0.3-cu1281-torch291-ubuntu2404" --gpu-id "NVIDIA GeForce RTX 4090"
-
 # Create CPU pod
 runpodctl pod create --compute-type cpu --image ubuntu:22.04
-
 # Start stopped pod
 runpodctl pod start <pod-id>
-
 # Stop running pod
 runpodctl pod stop <pod-id>
-
 # Restart pod
 runpodctl pod restart <pod-id>
-
 # Reset pod
 runpodctl pod reset <pod-id>
-
 # Update pod
 runpodctl pod update <pod-id> --name "new"
-
 # Delete pod (aliases: rm, remove)
 runpodctl pod delete <pod-id>
 ```
@@ -285,16 +263,12 @@ runpodctl pod delete <pod-id>
 ```bash
 # List all endpoints
 runpodctl serverless list
-
 # Get endpoint details
 runpodctl serverless get <endpoint-id>
-
 # Create endpoint
 runpodctl serverless create --name "x" --template-id "tpl_abc"
-
 # Update endpoint
 runpodctl serverless update <endpoint-id> --workers-max 5
-
 # Delete endpoint
 runpodctl serverless delete <endpoint-id>
 ```
@@ -308,43 +282,30 @@ runpodctl serverless delete <endpoint-id>
 ```bash
 # Official + community (first 10)
 runpodctl template list
-
 # All official templates
 runpodctl template list --type official
-
 # Community templates (first 10)
 runpodctl template list --type community
-
 # Your own templates
 runpodctl template list --type user
-
 # Everything including user
 runpodctl template list --all
-
 # Show 50 templates
 runpodctl template list --limit 50
-
 # Search for "pytorch" templates
 runpodctl template search pytorch
-
 # Search, limit to 5 results
 runpodctl template search comfyui --limit 5
-
 # Search only official
 runpodctl template search vllm --type official
-
 # Get template details (includes README, env, ports)
 runpodctl template get <template-id>
-
 # Create template
 runpodctl template create --name "x" --image "img"
-
 # Create serverless template
 runpodctl template create --name "x" --image "img" --serverless
-
 # Update template
 runpodctl template update <template-id> --name "new"
-
 # Delete template
 runpodctl template delete <template-id>
 ```
@@ -357,16 +318,12 @@ runpodctl template delete <template-id>
 ```bash
 # List all volumes
 runpodctl network-volume list
-
 # Get volume details
 runpodctl network-volume get <volume-id>
-
 # Create volume
 runpodctl network-volume create --name "x" --size 100 --data-center-id "US-GA-1"
-
 # Update volume
 runpodctl network-volume update <volume-id> --name "new"
-
 # Delete volume
 runpodctl network-volume delete <volume-id>
 ```
@@ -378,19 +335,14 @@ runpodctl network-volume delete <volume-id>
 ```bash
 # List your models
 runpodctl model list
-
 # List all models
 runpodctl model list --all
-
 # Filter by name
 runpodctl model list --name "llama"
-
 # Filter by provider
 runpodctl model list --provider "meta"
-
 # Add model
 runpodctl model add --name "my-model" --model-path ./model
-
 # Remove model
 runpodctl model remove --name "my-model"
 ```
@@ -400,13 +352,10 @@ runpodctl model remove --name "my-model"
 ```bash
 # List registry auths
 runpodctl registry list
-
 # Get registry auth
 runpodctl registry get <registry-id>
-
 # Create registry auth
 runpodctl registry create --name "x" --username "u" --password "p"
-
 # Delete registry auth
 runpodctl registry delete <registry-id>
 ```
@@ -416,22 +365,16 @@ runpodctl registry delete <registry-id>
 ```bash
 # Account info and balance (alias: me)
 runpodctl user
-
 # List available GPUs
 runpodctl gpu list
-
 # Include unavailable GPUs
 runpodctl gpu list --include-unavailable
-
 # List datacenters (alias: dc)
 runpodctl datacenter list
-
 # Pod billing history
 runpodctl billing pods
-
 # Serverless billing history
 runpodctl billing serverless
-
 # Volume billing history
 runpodctl billing network-volume
 ```
@@ -441,10 +384,8 @@ runpodctl billing network-volume
 ```bash
 # Get SSH info (command + key, does not connect)
 runpodctl ssh info <pod-id>
-
 # List SSH keys
 runpodctl ssh list-keys
-
 # Add SSH key
 runpodctl ssh add-key
 ```
@@ -456,7 +397,6 @@ runpodctl ssh add-key
 ```bash
 # Send files (outputs code)
 runpodctl send <path>
-
 # Receive files using code
 runpodctl receive <code>
 ```
@@ -466,13 +406,10 @@ runpodctl receive <code>
 ```bash
 # Diagnose and fix CLI issues
 runpodctl doctor
-
 # Update CLI
 runpodctl update
-
 # Show version
 runpodctl version
-
 # Auto-detect shell and install completion
 runpodctl completion
 ```
@@ -494,13 +431,10 @@ Example: `https://abc123xyz-8888.proxy.runpod.net`
 ```
 # Async request
 https://api.runpod.ai/v2/<endpoint-id>/run
-
 # Sync request
 https://api.runpod.ai/v2/<endpoint-id>/runsync
-
 # Health check
 https://api.runpod.ai/v2/<endpoint-id>/health
-
 # Job status
 https://api.runpod.ai/v2/<endpoint-id>/status/<job-id>
 ```
