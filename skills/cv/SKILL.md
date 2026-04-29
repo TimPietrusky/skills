@@ -371,29 +371,57 @@ https://api.runpod.ai/v2/<endpoint-id>/status/<job-id>  # Job status
 
 # agent-media (Apache-2.0)
 
-Agent-first media toolkit for image, video, and audio processing. All commands return deterministic JSON output.
+Image, video, and audio toolkit. All commands return deterministic JSON output.
 https://github.com/agntswrm/agent-media/blob/main/skills/agent-media/SKILL.md
 
 Requires Node.js 18+. Run via `npx agent-media@latest` or `npm install -g agent-media`.
 
-## Available Commands
+## Commands
 
-### Image Commands
-- `npx agent-media@latest image resize` - Resize an image
-- `npx agent-media@latest image convert` - Convert image format
-- `npx agent-media@latest image generate` - Generate image from text
-- `npx agent-media@latest image edit` - Edit one or more images with text prompt
-- `npx agent-media@latest image remove-background` - Remove image background
-- `npx agent-media@latest image upscale` - Upscale image with AI super-resolution
-- `npx agent-media@latest image extend` - Extend image canvas with padding
-- `npx agent-media@latest image crop` - Crop image to dimensions around focal point
+### Image
 
-### Audio Commands
-- `npx agent-media@latest audio extract` - Extract audio from video
-- `npx agent-media@latest audio transcribe` - Transcribe audio to text
+```bash
+# resize — at least one of --width/--height required
+npx agent-media@latest image resize --in photo.jpg --width 800 --height 600 --out ./resized --provider local
 
-### Video Commands
-- `npx agent-media@latest video generate` - Generate video from text or image
+# convert — --format png|jpg|webp; --quality 1-100 (lossy only, default 80)
+npx agent-media@latest image convert --in photo.png --format webp --quality 95 --out ./converted --provider local
+
+# generate — text-to-image (requires fal|replicate|runpod|ai-gateway, no local)
+npx agent-media@latest image generate --prompt "a red robot in a forest" --width 1024 --height 768 --count 1 --out ./generated --provider fal
+
+# edit — image-to-image; --in accepts multiple paths to combine images
+npx agent-media@latest image edit --in template.png person.jpg --prompt "place the person into the template" --aspect-ratio 1:1 --resolution 2K --model fal-ai/nano-banana-pro/edit --out ./edited --provider fal
+
+# remove-background — --resolution only honored by fal Dynamic model
+npx agent-media@latest image remove-background --in portrait.jpg --resolution 2048x2048 --out ./nobg --provider fal
+
+# upscale — --scale 2|4 (local always outputs 4x); --model overrides provider default
+npx agent-media@latest image upscale --in photo.jpg --scale 4 --model fal-ai/esrgan --out ./upscaled --provider fal
+
+# extend — solid-color padding; --color also flattens transparency
+npx agent-media@latest image extend --in photo.jpg --padding 50 --color "#FFFFFF" --dpi 300 --out ./extended
+
+# crop — --focus-x/--focus-y 0-100 (50=center)
+npx agent-media@latest image crop --in photo.jpg --width 800 --height 600 --focus-x 20 --focus-y 30 --dpi 300 --out ./cropped --provider local
+```
+
+### Audio
+
+```bash
+# extract — --format mp3|wav (default mp3); local only, bundled ffmpeg
+npx agent-media@latest audio extract --in video.mp4 --format mp3 --out ./audio
+
+# transcribe — --diarize for speakers, --speakers hint, --language fixes lang (else auto-detect)
+npx agent-media@latest audio transcribe --in podcast.mp3 --diarize --language en --speakers 3 --out ./transcripts --provider fal
+```
+
+### Video
+
+```bash
+# generate — text-to-video; pass --in to animate a static image; --audio enables audio track
+npx agent-media@latest video generate --prompt "a cat walking in a garden" --in portrait.png --duration 10 --resolution 1080p --fps 25 --audio --model lightricks/ltx-video --out ./videos --provider fal
+```
 
 ## Output Format
 
@@ -425,25 +453,18 @@ On error:
 
 ## Providers
 
-- **local** - Default provider using Sharp (resize, convert, extend, crop) and Transformers.js (remove-background, upscale, transcribe)
-- **fal** - fal.ai provider (generate, edit, remove-background, upscale, transcribe, video)
-- **replicate** - Replicate API (generate, edit, remove-background, upscale, transcribe, video)
-- **runpod** - Runpod API (generate, edit, video)
-- **ai-gateway** - Vercel AI Gateway (generate, edit)
+- **local** (default, no key) — Sharp: resize, convert, extend, crop. Transformers.js: remove-background, upscale, transcribe.
+- **fal** — `FAL_API_KEY`. generate, edit, remove-background, upscale, transcribe, video.
+- **replicate** — `REPLICATE_API_TOKEN`. generate, edit, remove-background, upscale, transcribe, video.
+- **runpod** — `RUNPOD_API_KEY`. generate, edit, video, transcribe.
+- **ai-gateway** — `AI_GATEWAY_API_KEY`. generate, edit.
 
-## Provider Selection
-
-1. Explicit: `--provider <name>`
-2. Auto-detect from environment variables
-3. Fallback to local provider
+Selection: explicit `--provider <name>` → auto-detect from env vars → local fallback.
 
 ## Environment Variables
 
-- `AGENT_MEDIA_DIR` - Custom output directory
-- `FAL_API_KEY` - Enable fal provider
-- `REPLICATE_API_TOKEN` - Enable replicate provider
-- `RUNPOD_API_KEY` - Enable runpod provider
-- `AI_GATEWAY_API_KEY` - Enable ai-gateway provider
+- `AGENT_MEDIA_DIR` — custom output directory
+- `FAL_API_KEY` / `REPLICATE_API_TOKEN` / `RUNPOD_API_KEY` / `AI_GATEWAY_API_KEY` — provider auth
 
 # a2go (MIT)
 
