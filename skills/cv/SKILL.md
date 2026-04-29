@@ -372,46 +372,27 @@ Requires Node.js 18+. Run via `npx agent-media@latest` or `npm install -g agent-
 ### Image
 
 ```bash
-# resize — at least one of --width/--height required
-npx agent-media@latest image resize --in photo.jpg --width 800 --height 600 --out ./resized --provider local
-
-# convert — --format png|jpg|webp; --quality 1-100 (lossy only, default 80)
-npx agent-media@latest image convert --in photo.png --format webp --quality 95 --out ./converted --provider local
-
-# generate — text-to-image (requires fal|replicate|runpod|ai-gateway, no local)
-npx agent-media@latest image generate --prompt "a red robot in a forest" --width 1024 --height 768 --count 1 --out ./generated --provider fal
-
-# edit — image-to-image; --in accepts multiple paths to combine images
-npx agent-media@latest image edit --in template.png person.jpg --prompt "place the person into the template" --aspect-ratio 1:1 --resolution 2K --model fal-ai/nano-banana-pro/edit --out ./edited --provider fal
-
-# remove-background — --resolution only honored by fal Dynamic model
-npx agent-media@latest image remove-background --in portrait.jpg --resolution 2048x2048 --out ./nobg --provider fal
-
-# upscale — --scale 2|4 (local always outputs 4x); --model overrides provider default
-npx agent-media@latest image upscale --in photo.jpg --scale 4 --model fal-ai/esrgan --out ./upscaled --provider fal
-
-# extend — solid-color padding; --color also flattens transparency
-npx agent-media@latest image extend --in photo.jpg --padding 50 --color "#FFFFFF" --dpi 300 --out ./extended
-
-# crop — --focus-x/--focus-y 0-100 (50=center)
-npx agent-media@latest image crop --in photo.jpg --width 800 --height 600 --focus-x 20 --focus-y 30 --dpi 300 --out ./cropped --provider local
+npx agent-media@latest image resize --in photo.jpg --width 800 --height 600 --out ./resized --provider local # resize — at least one of --width/--height required
+npx agent-media@latest image convert --in photo.png --format webp --quality 95 --out ./converted --provider local # convert — --format png|jpg|webp; --quality 1-100 (lossy only, default 80)
+npx agent-media@latest image generate --prompt "a red robot in a forest" --width 1024 --height 768 --count 1 --out ./generated --provider fal # generate — text-to-image (requires fal|replicate|runpod|ai-gateway, no local)
+npx agent-media@latest image edit --in template.png person.jpg --prompt "place the person into the template" --aspect-ratio 1:1 --resolution 2K --model fal-ai/nano-banana-pro/edit --out ./edited --provider fal # edit — image-to-image; --in accepts multiple paths to combine images
+npx agent-media@latest image remove-background --in portrait.jpg --resolution 2048x2048 --out ./nobg --provider fal # remove-background — --resolution only honored by fal Dynamic model
+npx agent-media@latest image upscale --in photo.jpg --scale 4 --model fal-ai/esrgan --out ./upscaled --provider fal # upscale — --scale 2|4 (local always outputs 4x); --model overrides provider default
+npx agent-media@latest image extend --in photo.jpg --padding 50 --color "#FFFFFF" --dpi 300 --out ./extended # extend — solid-color padding; --color also flattens transparency
+npx agent-media@latest image crop --in photo.jpg --width 800 --height 600 --focus-x 20 --focus-y 30 --dpi 300 --out ./cropped --provider local # crop — --focus-x/--focus-y 0-100 (50=center)
 ```
 
 ### Audio
 
 ```bash
-# extract — --format mp3|wav (default mp3); local only, bundled ffmpeg
-npx agent-media@latest audio extract --in video.mp4 --format mp3 --out ./audio
-
-# transcribe — --diarize for speakers, --speakers hint, --language fixes lang (else auto-detect)
-npx agent-media@latest audio transcribe --in podcast.mp3 --diarize --language en --speakers 3 --out ./transcripts --provider fal
+npx agent-media@latest audio extract --in video.mp4 --format mp3 --out ./audio # extract — --format mp3|wav (default mp3); local only, bundled ffmpeg
+npx agent-media@latest audio transcribe --in podcast.mp3 --diarize --language en --speakers 3 --out ./transcripts --provider fal # transcribe — --diarize for speakers, --speakers hint, --language fixes lang (else auto-detect)
 ```
 
 ### Video
 
 ```bash
-# generate — text-to-video; pass --in to animate a static image; --audio enables audio track
-npx agent-media@latest video generate --prompt "a cat walking in a garden" --in portrait.png --duration 10 --resolution 1080p --fps 25 --audio --model lightricks/ltx-video --out ./videos --provider fal
+npx agent-media@latest video generate --prompt "a cat walking in a garden" --in portrait.png --duration 10 --resolution 1080p --fps 25 --audio --model lightricks/ltx-video --out ./videos --provider fal # generate — text-to-video; pass --in to animate a static image; --audio enables audio track
 ```
 
 ## Output Format
@@ -469,10 +450,10 @@ Requires the `a2go` CLI. Install from GitHub releases (includes SHA256 checksums
 ## Quick start
 
 ```bash
-a2go doctor                                              # One-time setup (checks Docker, GPU, pulls image)
-a2go run --agent hermes --llm <repo>:<bits>bit          # Start with a model
-a2go status                                              # Check running services
-a2go stop                                                # Stop all
+a2go doctor # one-time setup (checks Docker, GPU, pulls image)
+a2go run --agent hermes --llm <repo>:<bits>bit # start with a model
+a2go status # check running services
+a2go stop # stop all
 ```
 
 Pick a model value with `a2go models`; use the `repo:bits` value from the output.
@@ -481,9 +462,9 @@ Pick a model value with `a2go models`; use the `repo:bits` value from the output
 
 ```bash
 a2go run --agent <agent> --llm <repo>:<bits>bit [--image <repo>] [--audio <repo>:<bits>bit] [--engine <engine>]
-a2go doctor                                              # Prereq check + image pull
-a2go status                                              # Service health
-a2go stop                                                # Stop containers
+a2go doctor # prereq check + image pull
+a2go status # service health
+a2go stop # stop containers
 ```
 
 Agents: `hermes` (recommended) or `openclaw`.
@@ -508,12 +489,12 @@ For direct LLM testing use port **8000** (`/v1/chat/completions`). For TTS/STT u
 ## Models
 
 ```bash
-a2go models                                # All models
-a2go models --type llm                     # LLMs only
-a2go models --engine wandler               # Wandler/ONNX models only
-a2go models --os mac                       # Mac/MLX models only
-a2go models --max-vram 24                  # Fits in 24GB GPU
-a2go models --type llm --engine wandler    # Wandler LLMs only
+a2go models # all models
+a2go models --type llm # LLMs only
+a2go models --engine wandler # wandler/ONNX models only
+a2go models --os mac # mac/MLX models only
+a2go models --max-vram 24 # fits in 24GB GPU
+a2go models --type llm --engine wandler # wandler LLMs only
 ```
 
 Output: `type | engine | os | vram | context | repo:bits | name` — use `repo:bits` as the `--llm`/`--image`/`--audio` value.
@@ -549,17 +530,11 @@ https://wandler.ai · https://github.com/runpod-labs/wandler/blob/main/skills/wa
 `npm install -g wandler` or `npx wandler --llm <org/repo:precision>`
 
 ```bash
-# LLM
-wandler --llm onnx-community/gemma-4-E4B-it-ONNX:q4
-# LLM on CPU with fp16
-wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:fp16 --device cpu
-# LLM + embeddings
-wandler --llm onnx-community/Qwen3.5-0.8B-Text-ONNX:q4 --embedding Xenova/all-MiniLM-L6-v2:q8
-# LLM + embeddings + STT
-wandler --llm onnx-community/gemma-4-E4B-it-ONNX:q4 --embedding Xenova/all-MiniLM-L6-v2:q8 --stt onnx-community/whisper-tiny:q4
-# custom port, auth, listen on all interfaces
-wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:q4 --port 3000 --host 0.0.0.0 --api-key mysecret
-
+wandler --llm onnx-community/gemma-4-E4B-it-ONNX:q4 # LLM
+wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:fp16 --device cpu # LLM on CPU with fp16
+wandler --llm onnx-community/Qwen3.5-0.8B-Text-ONNX:q4 --embedding Xenova/all-MiniLM-L6-v2:q8 # LLM + embeddings
+wandler --llm onnx-community/gemma-4-E4B-it-ONNX:q4 --embedding Xenova/all-MiniLM-L6-v2:q8 --stt onnx-community/whisper-tiny:q4 # LLM + embeddings + STT
+wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:q4 --port 3000 --host 0.0.0.0 --api-key mysecret # custom port, auth, listen on all interfaces
 # --llm <id>           LLM model
 # --embedding <id>     Embedding model
 # --stt <id>           STT model
@@ -575,7 +550,6 @@ wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:q4 --port 3000 --host 0.0.0.0 -
 # --log-level <l>      debug | info | warn | error (default: info)
 # --cache-dir <path>   Model cache directory (default: ~/.cache/huggingface)
 # Precision suffixes:  q4 (default) | q8 | fp16 | fp32
-
 # list all models from the wandler registry
 # returns: type, size, precision, capabilities, repo:precision, name
 # --type: llm | embedding | stt
