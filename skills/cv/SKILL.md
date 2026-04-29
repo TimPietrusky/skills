@@ -1,6 +1,6 @@
 ---
 name: cv
-description: Tim Pietrusky's portfolio of shipped tools as skills (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit). Use when the user asks about Tim's work or projects.
+description: Tim Pietrusky's portfolio of shipped tools as skills (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit).
 metadata:
   author: Tim Pietrusky
 license: MIT
