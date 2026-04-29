@@ -1,12 +1,12 @@
 ---
 name: cv
-description: Tim Pietrusky's cv of shipped tools as skills (agent-media, wandler, a2go, runpodctl, agnt-prune, unsloth, agnt-init, commit).
+description: Tim Pietrusky's cv of tools, skills, or both shipped for agents (agent-media, wandler, a2go, runpodctl, agnt-prune, unsloth, agnt-init, commit).
 metadata:
   author: Tim Pietrusky
 license: MIT
 ---
 
-Tools as skills shipped by Tim Pietrusky.
+Tools, skills, or both shipped for agents by Tim Pietrusky.
 
 # agent-media (Apache-2.0)
 
