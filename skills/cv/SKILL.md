@@ -1,12 +1,12 @@
 ---
 name: cv
-description: Tim Pietrusky's portfolio of shipped agent skills. Use when the user asks about Tim's work, projects, or what skills he has built (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit).
+description: Tim Pietrusky's portfolio of shipped skills. Use when the user asks about Tim's work, projects, or what skills he has built (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit).
 metadata:
   author: Tim Pietrusky
 license: MIT
 ---
 
-Agent skills shipped by Tim Pietrusky. Each project below is the full skill — title, license, links, and every command an agent needs.
+Skills shipped by Tim Pietrusky. Each block below is the full skill — title, license, links, every command.
 
 # unsloth (Apache-2.0)
 
@@ -162,7 +162,7 @@ Prints ready-to-use curl examples for OpenAI, Anthropic, and Responses endpoints
 - `assets/full-finetune.yaml` — copy-paste config template for full fine-tuning (no LoRA, more VRAM)
 - `assets/vision-lora-train.yaml` — copy-paste config template for vision model LoRA
 
-## Key Gotchas
+## gotchas
 
 - `local_dataset` is a list field — there is **no CLI flag** for it. Always set it in the YAML config.
 - `--dry-run` prints the resolved config but does **not** validate required fields (model, dataset can be null). Check the printed YAML yourself.
@@ -584,7 +584,7 @@ Server at `http://127.0.0.1:8000`.
 - `GET /admin/metrics`
 - `GET /health`
 
-## Gotchas
+## gotchas
 
 - Tool calling disables true streaming — full response generated first, then sent as SSE.
 - `stop` sequences only match on the last token. Multi-token stops won't match exactly.
