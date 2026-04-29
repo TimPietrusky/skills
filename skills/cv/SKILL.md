@@ -155,6 +155,13 @@ Prints ready-to-use curl examples for OpenAI, Anthropic, and Responses endpoints
 - `--port` / `-p` (default: 8888), `--host` / `-H` (default: 0.0.0.0)
 - `--silent` / `-q` — suppress banner output
 
+## References
+
+- `references/config-reference.md` — every config field with type, default, and description
+- `assets/lora-text-train.yaml` — copy-paste config template for LoRA text fine-tuning (most common)
+- `assets/full-finetune.yaml` — copy-paste config template for full fine-tuning (no LoRA, more VRAM)
+- `assets/vision-lora-train.yaml` — copy-paste config template for vision model LoRA
+
 ## Key Gotchas
 
 - `local_dataset` is a list field — there is **no CLI flag** for it. Always set it in the YAML config.
