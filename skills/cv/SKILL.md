@@ -22,10 +22,10 @@ Requires Node.js 18+. Run via `npx agent-media@latest` or `npm install -g agent-
 ```bash
 npx agent-media@latest image resize --in photo.jpg --width 800 --height 600 --out ./resized --provider local # resize — at least one of --width/--height required
 npx agent-media@latest image convert --in photo.png --format webp --quality 95 --out ./converted --provider local # convert — --format png|jpg|webp; --quality 1-100 (lossy only, default 80)
-npx agent-media@latest image generate --prompt "a red robot in a forest" --width 1024 --height 768 --count 1 --out ./generated --provider fal # generate — text-to-image (requires fal|replicate|runpod|ai-gateway, no local)
+npx agent-media@latest image generate --prompt "a red robot in a forest" --width 1024 --height 768 --count 1 --out ./generated --provider ai-gateway # generate — text-to-image (requires fal|replicate|runpod|ai-gateway, no local)
 npx agent-media@latest image edit --in template.png person.jpg --prompt "place the person into the template" --aspect-ratio 1:1 --resolution 2K --model fal-ai/nano-banana-pro/edit --out ./edited --provider fal # edit — image-to-image; --in accepts multiple paths to combine images
 npx agent-media@latest image remove-background --in portrait.jpg --resolution 2048x2048 --out ./nobg --provider fal # remove-background — --resolution only honored by fal Dynamic model
-npx agent-media@latest image upscale --in photo.jpg --scale 4 --model fal-ai/esrgan --out ./upscaled --provider fal # upscale — --scale 2|4 (local always outputs 4x); --model overrides provider default
+npx agent-media@latest image upscale --in photo.jpg --scale 4 --model nightmareai/real-esrgan --out ./upscaled --provider replicate # upscale — --scale 2|4 (local always 4x); replicate supports 2-10x; --model overrides provider default
 npx agent-media@latest image extend --in photo.jpg --padding 50 --color "#FFFFFF" --dpi 300 --out ./extended # extend — solid-color padding; --color also flattens transparency
 npx agent-media@latest image crop --in photo.jpg --width 800 --height 600 --focus-x 20 --focus-y 30 --dpi 300 --out ./cropped --provider local # crop — --focus-x/--focus-y 0-100 (50=center)
 ```
@@ -34,13 +34,13 @@ npx agent-media@latest image crop --in photo.jpg --width 800 --height 600 --focu
 
 ```bash
 npx agent-media@latest audio extract --in video.mp4 --format mp3 --out ./audio # extract — --format mp3|wav (default mp3); local only, bundled ffmpeg
-npx agent-media@latest audio transcribe --in podcast.mp3 --diarize --language en --speakers 3 --out ./transcripts --provider fal # transcribe — --diarize for speakers, --speakers hint, --language fixes lang (else auto-detect)
+npx agent-media@latest audio transcribe --in podcast.mp3 --language en --out ./transcripts --provider runpod # transcribe — --language fixes lang (else auto-detect); --diarize/--speakers requires fal|replicate
 ```
 
 ### Video
 
 ```bash
-npx agent-media@latest video generate --prompt "a cat walking in a garden" --in portrait.png --duration 10 --resolution 1080p --fps 25 --audio --model lightricks/ltx-video --out ./videos --provider fal # generate — text-to-video; pass --in to animate a static image; --audio enables audio track
+npx agent-media@latest video generate --prompt "a cat walking in a garden" --in portrait.png --duration 10 --resolution 1080p --fps 25 --audio --model lightricks/ltx-video --out ./videos --provider replicate # generate — text-to-video; pass --in to animate a static image; --audio enables audio track
 ```
 
 ## Output Format
