@@ -6,7 +6,7 @@ metadata:
 license: MIT
 ---
 
-Skills shipped by Tim Pietrusky. Each block below is the full skill — title, license, links, every command.
+Skills shipped by Tim Pietrusky.
 
 # unsloth (Apache-2.0)
 
