@@ -1,6 +1,6 @@
 ---
 name: cv
-description: Tim Pietrusky's portfolio of shipped tools as skills (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit).
+description: Tim Pietrusky's cv of shipped tools as skills (unsloth, runpodctl, agent-media, a2go, wandler, agnt-init, agnt-prune, commit).
 metadata:
   author: Tim Pietrusky
 license: MIT
@@ -537,20 +537,28 @@ wandler --llm onnx-community/gemma-4-E4B-it-ONNX:q4 --embedding Xenova/all-MiniL
 wandler --llm LiquidAI/LFM2.5-1.2B-Instruct-ONNX:q4 --port 3000 --host 0.0.0.0 --api-key mysecret # custom port, auth, listen on all interfaces
 ```
 
-- `--llm <id>` — LLM model
-- `--embedding <id>` — embedding model
-- `--stt <id>` — STT model
-- `--device <type>` — `auto` | `webgpu` | `cpu` | `wasm` (default: `auto`)
+- `--llm <id>` — LLM model (env `WANDLER_LLM`)
+- `--backend <name>` — `wandler` | `transformersjs` (default: `wandler`; env `WANDLER_BACKEND`)
+- `--embedding <id>` — embedding model (env `WANDLER_EMBEDDING`)
+- `--stt <id>` — STT model (env `WANDLER_STT`)
+- `--device <type>` — `auto` | `cuda` | `coreml` | `dml` | `webgpu` | `cpu` | `wasm` (default: `auto`)
 - `--port <n>` — default: 8000
 - `--host <addr>` — default: `127.0.0.1`
-- `--api-key <key>` — bearer auth (or env `WANDLER_API_KEY`)
+- `--api-key <key>` — bearer auth (env `WANDLER_API_KEY`)
 - `--hf-token <token>` — HuggingFace token for gated models
 - `--cors-origin <o>` — allowed CORS origin (default: `*`)
-- `--max-tokens <n>` — max tokens per request (default: model's max context)
+- `--max-tokens <n>` — max tokens per request (default: loaded model context)
 - `--max-concurrent <n>` — concurrent requests (default: 1)
 - `--timeout <ms>` — request timeout (default: 120000)
 - `--log-level <l>` — `debug` | `info` | `warn` | `error` (default: `info`)
-- `--cache-dir <path>` — model cache directory (default: `~/.cache/huggingface`)
+- `--quiet` — suppress non-error startup/profile logs (env `WANDLER_QUIET`)
+- `--cache-dir <path>` — model cache directory (default: HF cache)
+- `--prefill-chunk-size <n>` — `auto` | `auto:<mb>` | `0`/`off` | integer chunk size (auto uses a 640MB WebGPU attention budget; other backends use 1024)
+- `--prefix-cache <mode>` — `true` | `false` (default: `true`; env `WANDLER_PREFIX_CACHE`)
+- `--prefix-cache-entries <n>` — prefix KV cache entries (default: 2)
+- `--prefix-cache-min-tokens <n>` — minimum prefix tokens to cache (default: 512)
+- `--warmup-tokens <n>` — approximate startup warmup prompt tokens (default: 0)
+- `--warmup-max-new-tokens <n>` — startup warmup max new tokens (default: 8)
 
 Precision suffixes: `q4` (default) | `q8` | `fp16` | `fp32`.
 
