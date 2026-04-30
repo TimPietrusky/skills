@@ -8,7 +8,7 @@ license: MIT
 
 tools for agents created by nerddisco
 
-# agent-media (Apache-2.0)
+# agent-media
 
 Image, video, and audio toolkit. All commands return deterministic JSON output.
 https://github.com/agntswrm/agent-media/blob/main/skills/agent-media/SKILL.md
@@ -86,7 +86,7 @@ Selection: explicit `--provider <name>` → auto-detect from env vars → local 
 - `AGENT_MEDIA_DIR` — custom output directory
 - `FAL_API_KEY` / `REPLICATE_API_TOKEN` / `RUNPOD_API_KEY` / `AI_GATEWAY_API_KEY` — provider auth
 
-# wandler (MIT)
+# wandler
 
 transformers.js inference server with OpenAI-compatible API, written in TypeScript.
 https://wandler.ai · https://github.com/runpod-labs/wandler/blob/main/skills/wandler/SKILL.md
@@ -154,7 +154,7 @@ Returns: `type | size | precision | capabilities | repo:precision | name`.
 - Tool calling disables true streaming — full response generated first, then sent as SSE.
 - `stop` sequences only match on the last token. Multi-token stops won't match exactly.
 
-# a2go (MIT)
+# a2go
 
 Use open weight models (LLM, image, audio) with open source agents on Mac, Linux, and Windows.
 https://a2go.run · https://github.com/runpod-labs/a2go/blob/main/skills/a2go/SKILL.md
@@ -238,7 +238,7 @@ Env vars: `A2GO_AUTH_TOKEN` (gateway auth), `A2GO_API_KEY` (LLM API auth).
 - **Mac/Apple Silicon:** `a2go run` runs natively via MLX (no Docker). Wandler models also work on Mac.
 - **Browse models visually:** https://a2go.run
 
-# runpodctl (Apache-2.0)
+# runpodctl
 
 Manage GPU pods, serverless endpoints, templates, network volumes, and models on Runpod.
 https://github.com/runpod/skills/blob/main/runpodctl/SKILL.md
@@ -423,7 +423,7 @@ https://api.runpod.ai/v2/<endpoint-id>/health # health check
 https://api.runpod.ai/v2/<endpoint-id>/status/<job-id> # job status
 ```
 
-# agnt-prune (Apache-2.0)
+# agnt-prune
 
 Prune AGENTS.md / CLAUDE.md down to only sharp edges and gotchas by removing everything inferable from the codebase.
 https://github.com/agntswrm/agnt-prune/blob/main/agnt-prune/SKILL.md
@@ -451,7 +451,7 @@ This document exists for non-obvious, error-prone shortcomings in the codebase, 
 - Show the user a diff of what will be removed and ask for confirmation before writing
 - Write the pruned content back to the same file
 
-# unsloth (Apache-2.0)
+# unsloth
 
 Fine-tune, run inference on, and export LLMs and vision models using the Unsloth Studio CLI.
 https://github.com/unslothai/unsloth/pull/4443
@@ -618,7 +618,7 @@ Prints ready-to-use curl examples for OpenAI, Anthropic, and Responses endpoints
 - Boolean flags use `--flag / --no-flag` pattern (e.g. `--load-in-4bit / --no-load-in-4bit`)
 - `--push-to-hub` requires `--repo-id`
 
-# agnt-init (Apache-2.0)
+# agnt-init
 
 Initialize a project for agents by creating AGENTS.md and symlinking CLAUDE.md to it.
 https://github.com/agntswrm/agnt-init/blob/main/agnt-init/SKILL.md
