@@ -7,7 +7,7 @@ Get the most out of coding with AI.
 - **`AGENTS.md`** — living document for non-obvious gotchas and patterns discovered while working in this codebase
 - **`skills/`** — reusable agent skills following the [skills.sh](https://skills.sh) ecosystem
   - `commit/` — conventional commits (angular style)
-  - `cv/` — tools or skills (or both) shipped for agents
+  - `nerddisco-cv/` — tools for agents created by nerddisco
 
 ## Cleaning up AGENTS.md
 
