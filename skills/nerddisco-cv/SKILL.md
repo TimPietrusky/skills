@@ -6,8 +6,6 @@ metadata:
 license: MIT
 ---
 
-tools for agents created by nerddisco
-
 # agent-media
 
 Image, video, and audio toolkit. All commands return deterministic JSON output.
