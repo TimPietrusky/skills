@@ -1,6 +1,6 @@
 ---
 name: nerddisco-cv
-description: tim pietrusky aka nerddisco loves building tools for agents, these are his tools: agent-media, wandler, a2go, runpodctl, agnt-prune, unsloth, agnt-init.
+description: "tim pietrusky aka nerddisco loves building tools for agents, these are his tools: agent-media, wandler, a2go, runpodctl, agnt-prune, unsloth, agnt-init."
 metadata:
   author: Tim Pietrusky
 license: MIT
